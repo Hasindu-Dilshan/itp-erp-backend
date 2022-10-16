@@ -10,6 +10,8 @@ router.use(cors());
 const authController = require("./controllers/auth_controller")
 const deliveryControoler = require("./controllers/delivery_order_controller")
 const registeredUserController = require("./controllers/registered_user_controller")
+const companyController = require("./controllers/company_controller")
+
 const db_url = "mongodb+srv://root:root123@cluster0.axvyf.mongodb.net/test"
 const port = 8080
 /* Connect to Mongo */
@@ -58,6 +60,7 @@ const StartServer = () => {
    router.use("/auth",authController)
    router.use("/delivery-order",deliveryControoler)
    router.use("/registered-user",registeredUserController)
+   router.use("/company",companyController)
    /** Healthcheck */
    router.get('/ping', (req, res, next) => res.status(200).json({ hello: 'world' }));
 

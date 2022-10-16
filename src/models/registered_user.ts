@@ -1,5 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose';
 export interface IRegisteredUser extends Document {
+   _id : string,
    email: string,
    name: string,
    photoUrl?: string,
