@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import delivery_order_model, { DeliveryOrder } from '../models/delivery_order_model';
+import delivery_order_model from '../models/delivery_order_model';
 
 
 const createDeliveryOrder = (req: Request, res: Response, next: NextFunction) => {
@@ -45,7 +45,7 @@ const getDeliveryOrders = (req: Request, res: Response, next: NextFunction) => {
 const deleteDeliveryOrder = (req: Request, res: Response, next: NextFunction) => {
    const id = req.params.id;
    return delivery_order_model.findByIdAndDelete(id)
-      .then(() => res.status(200).json({ success: true }))
+      .then(() => res.status(201).json({ success: true }))
       .catch((error) => res.status(500).json({ error }));
 }
 
