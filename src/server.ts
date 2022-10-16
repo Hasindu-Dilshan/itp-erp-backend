@@ -1,14 +1,16 @@
+﻿"use strict";
 import express from "express"
 import http from "http"
 import mongoose from "mongoose"
 import Logging from "./library/Loggin"
-
+const cors = require("cors");
 const router = express()
-
+router.use(cors());
 /**constorllers */
+const authController = require("./controllers/auth_controller")
 
 
-const db_url = "mongodb://db-itp:*****@db-itp.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@db-itp@"
+const db_url = "mongodb+srv://root:root123@cluster0.axvyf.mongodb.net/test"
 const port = 8080
 /* Connect to Mongo */
 mongoose.connect(db_url)
@@ -53,6 +55,7 @@ const StartServer = () => {
    });
 
    /** Routes */
+   router.use("/auth",authController)
 
    /** Healthcheck */
    router.get('/ping', (req, res, next) => res.status(200).json({ hello: 'world' }));
