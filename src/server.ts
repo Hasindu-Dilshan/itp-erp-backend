@@ -12,7 +12,7 @@ const deliveryControoler = require("./controllers/delivery_order_controller")
 const registeredUserController = require("./controllers/registered_user_controller")
 const companyController = require("./controllers/company_controller")
 const salesOrder = require("./controllers/sales_order_controller")
-
+const purchaseRequestController = require("./controllers/purchase_request_controller")
 const db_url = "mongodb+srv://root:root123@cluster0.axvyf.mongodb.net/test"
 const port = 8080
 /* Connect to Mongo */
@@ -63,6 +63,7 @@ const StartServer = () => {
    router.use("/registered-user",registeredUserController)
    router.use("/company",companyController)
    router.use("/sales-order",salesOrder)
+   router.use("/purchase-order",purchaseRequestController)
    /** Healthcheck */
    router.get('/ping', (req, res, next) => res.status(200).json({ hello: 'world' }));
 
