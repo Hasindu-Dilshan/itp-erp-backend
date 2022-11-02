@@ -2,12 +2,13 @@ import { NextFunction, Request, Response } from 'express';
 import delivery_order_model from '../models/delivery_order_model';
 
 
-const createDeliveryOrder = (req: Request, res: Response, next: NextFunction) => {
-   const { date, transactionDate, transactionType, coustomer, shippingAddress, totalBill, status, companyId } = req.body;
+const createDeliveryOrder = (req: Request, res: Response, next: NextFunction) => {  
+
+   const { date, transactionDate, transactionType, coustomer, shippingAddress, totalBill, status, companyId,customerType } = req.body;
 
    const deliveryOrder = new delivery_order_model(
       {
-         date, transactionDate, transactionType, coustomer, shippingAddress, totalBill, status, companyId
+         date, transactionDate, transactionType, coustomer, shippingAddress, totalBill, status, companyId,customerType
       })
 
    return deliveryOrder.save().then((order) => res.status(201).json(order)).catch(error => res.status(500).json({ error }))

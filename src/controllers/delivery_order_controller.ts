@@ -6,9 +6,9 @@ const router = express.Router();
 
 router.get("/:id/:offset/:page",extractJWT,delivery_order_service.getDeliveryOrders)
 router.get("/:id",extractJWT,delivery_order_service.getDeliveryOrderById)
-router.post("/create-delivery-order",extractJWT,delivery_order_service.createDeliveryOrder)
+router.post("/create-delivery-order",delivery_order_service.createDeliveryOrder)
 router.put("/update-delivery-order/:id",extractJWT,delivery_order_service.updateDeliveryOrder)
 router.delete("/delete-delivery-order/:id",extractJWT,delivery_order_service.deleteDeliveryOrder)
 
 
-export = router
+export = router   
