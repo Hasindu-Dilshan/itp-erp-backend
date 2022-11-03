@@ -3,17 +3,21 @@ import item_model from '../models/item_model';
 
 
 const createitem = (req: Request, res: Response, next: NextFunction) => {
-   const { name,
-      instock,
-      manufacturedBy,
-      companyId, } = req.body;
+   const {
+      name,
+      inStock,
+      manufacturer,
+      companyId,
+      supplier,
+   } = req.body;
 
    const item = new item_model(
       {
          name,
-         instock,
-         manufacturedBy,
+         inStock,
+         manufacturer,
          companyId,
+         supplier,
       })
 
    return item.save().then((item) => res.status(201).json(item)).catch(error => res.status(500).json({ error }))

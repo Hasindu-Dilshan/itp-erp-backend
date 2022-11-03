@@ -3,17 +3,19 @@
 export interface Item extends Document {
    _id: string,
    name: string,
-   instock: boolean,
-   manufacturedBy: string,
+   inStock: boolean,
+   manufacturer: string,
    companyId: string,
+   supplier : string,
 }
 
 const ItemSchema: Schema = new Schema({
    name: { type: String, required: true },
-   instock: { type: Boolean, required: true },
-   manufacturedBy: { type: String, required: true },
+   inStock: { type: Boolean, required: true },
+   manufacturer: { type: String, required: true },
    createAt: { type: Date, required: false, default: Date.now },
-   companyId: { type: String, required: true }
+   companyId: { type: String, required: true },
+   supplier : {type:String,required : true}
 });
 
 export default mongoose.model<Item>('item', ItemSchema);

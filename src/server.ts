@@ -15,7 +15,9 @@ const salesOrder = require("./controllers/sales_order_controller")
 const purchaseRequestController = require("./controllers/purchase_request_controller")
 const purchaseOrderController = require("./controllers/purchase_order_controller")
 const customerController = require("./controllers/customer_controller")
-//
+const itemController = require("./controllers/item_controller")
+const stockOrder = require("./controllers/stock_order_controller")
+// 
 const db_url = "mongodb+srv://root:root123@cluster0.axvyf.mongodb.net/test"
 const port = 8080
 /* Connect to Mongo */
@@ -69,6 +71,9 @@ const StartServer = () => {
    router.use("/purchase-request",purchaseRequestController)
    router.use("/purchase-order",purchaseOrderController)
    router.use("/customer",customerController)
+   router.use("/item-controller",itemController);
+   router.use("/stock-order-controller",stockOrder);
+
    /** Healthcheck */
    router.get('/ping', (req, res, next) => res.status(200).json({ hello: 'world' }));
 
