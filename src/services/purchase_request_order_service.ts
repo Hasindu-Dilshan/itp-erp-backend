@@ -1,13 +1,13 @@
 import { NextFunction, Request, Response } from 'express';
-import purchase_request_model from '../models/purchase_request';
+import purchase_request_order_model from '../models/purchase_request_order_model';
 
 
 const createPurchaseRequest = (req: Request, res: Response, next: NextFunction) => {
-   const { requestBy, totaBill, status } = req.body;
+   const { requestId,itemId,quantity,itemPrice } = req.body;
 
-   const PurchaseRequest = new purchase_request_model(
+   const PurchaseRequest = new purchase_request_order_model(
       {
-         requestBy, totaBill, status
+         requestId,itemId,quantity,itemPrice
       })
 
    return PurchaseRequest.save().then((order) => res.status(201).json(order)).catch(error => res.status(500).json({ error }))
@@ -15,7 +15,7 @@ const createPurchaseRequest = (req: Request, res: Response, next: NextFunction) 
 }
 const updatePurchaseRequest = (req: Request, res: Response, next: NextFunction) => {
    const id = req.params.id;
-   return purchase_request_model.findById(id).then((order) => {
+   return purchase_request_order_model.findById(id).then((order) => {
       if (order) {
          return order.set(req.body)
             .save().then((order) => res.status(201)
@@ -34,7 +34,7 @@ const getPurchaseRequests = (req: Request, res: Response, next: NextFunction) =>
 
    const query = { companyId: companyID }
 
-   return purchase_request_model
+   return purchase_request_order_model
       .find(query).skip(page * page)
       .limit(offset)
       .then((orders) => res.status(200).json({ orders }))
@@ -44,14 +44,14 @@ const getPurchaseRequests = (req: Request, res: Response, next: NextFunction) =>
 }
 const deletePurchaseRequest = (req: Request, res: Response, next: NextFunction) => {
    const id = req.params.id;
-   return purchase_request_model.findByIdAndDelete(id)
+   return purchase_request_order_model.findByIdAndDelete(id)
       .then(() => res.status(201).json({ success: true }))
       .catch((error) => res.status(500).json({ error }));
 }
 
 const getPurchaseRequestById = (req: Request, res: Response, next: NextFunction) => {
    const id = req.params.id;
-   return purchase_request_model
+   return purchase_request_order_model
       .findById(id)
       .then((order) => {
          if (order) {
