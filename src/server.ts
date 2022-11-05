@@ -20,8 +20,9 @@ const stockOrder = require("./controllers/stock_order_controller")
 const employeeController =  require("./controllers/employee_controller")
 const purchaseRequestOrderController = require("./controllers/purchase_request_order_controller")
 // 
-const db_url = "mongodb+srv://root:root123@cluster0.axvyf.mongodb.net/test"
-const port = 8080
+//const db_url = "mongodb+srv://root:root123@cluster0.axvyf.mongodb.net/test"
+const db_url = "mongodb://db-itp:u9i7EW85Ez9N2fZRFvHOXTZG8B5jbX5zzMrAcM0ciTYbU11fKVXbOHKiVZzkiQr54Qe8X4XdPqwlDPekPANqFw==@db-itp.mongo.cosmos.azure.com:10255/erp_2022?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@db-itp@";
+const port = 5000
 /* Connect to Mongo */
 mongoose.connect(db_url)
    .then(() => {
@@ -92,5 +93,10 @@ const StartServer = () => {
       });
    });
 
-   http.createServer(router).listen(port, () => Logging.info(`Server is running on port ${port}`));
+  // http.createServer(router).listen(5000, () => Logging.info(`Server is running on port ${5000}`));
+  router.set("port", process.env.PORT || 3000);
+
+  router.listen(process.env.PORT,()=>{
+  console.log(`Server running on http://localhost:${process.env.PORT}`);
+});
 }
