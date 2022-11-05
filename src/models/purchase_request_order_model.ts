@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-export interface PhurchaseOrder extends Document {
+export interface PurchaseRequestOrder extends Document {
    _id: string,
    requestId: string,
    itemId: string,
@@ -8,7 +8,7 @@ export interface PhurchaseOrder extends Document {
    itemPrice : number,
 }
 
-const PhurchaseOrderSchema: Schema = new Schema({
+const PurchaseRequestOrderSchema: Schema = new Schema({
    date: { type: Date, default: Date(), required: true },
    requestId: {type: String,required : true},
    itemId: {type: String,required : true},
@@ -16,7 +16,7 @@ const PhurchaseOrderSchema: Schema = new Schema({
    itemPrice : {type:Number,required : true}
 });
 
-export default mongoose.model<PhurchaseOrder>('purchase_request_order', PhurchaseOrderSchema);
+export default mongoose.model<PurchaseRequestOrder>('purchase_request_order', PurchaseRequestOrderSchema);
 
 
 

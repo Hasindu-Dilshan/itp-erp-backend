@@ -3,11 +3,11 @@ import purchase_request_order_model from '../models/purchase_request_order_model
 
 
 const createPurchaseRequest = (req: Request, res: Response, next: NextFunction) => {
-   const { requestId,itemId,quantity,itemPrice } = req.body;
+   const { requestId,itemId,quantity,itemPrice,requestTo,requestToId } = req.body;
 
    const PurchaseRequest = new purchase_request_order_model(
       {
-         requestId,itemId,quantity,itemPrice
+         requestId,itemId,quantity,itemPrice,requestTo,requestToId
       })
 
    return PurchaseRequest.save().then((order) => res.status(201).json(order)).catch(error => res.status(500).json({ error }))
