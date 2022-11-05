@@ -12,10 +12,9 @@ export interface PhurchaseOrder extends Document {
 }
 
 const PhurchaseOrderSchema: Schema = new Schema({
-    date: {type: Date,default: null,required: true},
+    date: {type: Date,default: null,required: false},
     purchaseOrderDate: {type: Date,required: true},
     suppierName: {type: String,required: true},
-    shippingAddress: {type: String,required: true},
     store: {type: String,required: true},
     netAmount: {type: String,required: true},
     status: {type: String,required: true},

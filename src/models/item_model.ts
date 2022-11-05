@@ -1,4 +1,4 @@
- import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
 
 export interface Item extends Document {
    _id: string,
@@ -6,7 +6,8 @@ export interface Item extends Document {
    inStock: boolean,
    manufacturer: string,
    companyId: string,
-   supplier : string,
+   supplier: string,
+   price: number,
 }
 
 const ItemSchema: Schema = new Schema({
@@ -15,7 +16,8 @@ const ItemSchema: Schema = new Schema({
    manufacturer: { type: String, required: true },
    createAt: { type: Date, required: false, default: Date.now },
    companyId: { type: String, required: true },
-   supplier : {type:String,required : true}
+   supplier: { type: String, required: true },
+   price: { type: Number, required: true },
 });
 
 export default mongoose.model<Item>('item', ItemSchema);

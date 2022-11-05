@@ -9,6 +9,7 @@ const createitem = (req: Request, res: Response, next: NextFunction) => {
       manufacturer,
       companyId,
       supplier,
+      price
    } = req.body;
 
    const item = new item_model(
@@ -18,6 +19,7 @@ const createitem = (req: Request, res: Response, next: NextFunction) => {
          manufacturer,
          companyId,
          supplier,
+         price
       })
 
    return item.save().then((item) => res.status(201).json(item)).catch(error => res.status(500).json({ error }))
